@@ -128,7 +128,3 @@
     @apply font-mono;
   }
 }
-
-@theme {
-  --font-montserrat: 'Montserrat Alternates', sans-serif;
-}
