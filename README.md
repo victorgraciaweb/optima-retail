@@ -371,7 +371,6 @@ AI-generated code was never accepted blindly: on several occasions it proposed u
 # Additional resources
 
 - `ai-process/` → AI usage documentation.
-- `docs/images/` → screenshots.
 - `docs/postman/` → Postman collection and environment.
 
 ---
