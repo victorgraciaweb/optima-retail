@@ -108,8 +108,8 @@ cd optima-retail
 
 ```bash
 cp .env.example .env                      # credentials for the PostgreSQL container
-cp backend/.env.template backend/.env
-cp frontend/.env.template frontend/.env
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
 ```
 
 The root `.env` feeds `docker-compose.yaml`; `backend/.env` must point to the **same** user, password and database name.
