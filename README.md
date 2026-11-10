@@ -72,7 +72,7 @@ optima-retail/
 │       ├── maintenance/  # consistency diagnostic and repair
 │       ├── migrations/   # TypeORM migrations (schema + indexes)
 │       ├── seed/         # sample data, including the seeded inconsistencies
-│       ├── common/       # pagination DTOs, exception handling
+│       ├── common/       # pagination DTOs, global exception filter
 │       ├── config/       # app config and TypeORM data source
 │       └── health/
 │
@@ -86,7 +86,7 @@ optima-retail/
 │       └── pages/
 │
 ├── ai-process/           # AI usage documentation (required by the assignment)
-├── docs/                 # screenshots and Postman collection
+├── docs/                 # Postman collection
 │
 ├── .env.example          # environment template, no real credentials
 ├── docker-compose.yaml   # PostgreSQL 16
@@ -220,7 +220,7 @@ Global prefix `api`. Interactive documentation at **http://localhost:3000/api/do
 
 Listing uses `limit`/`offset` pagination and returns `{ data, count, pages }`. Filters are applied with conditional `andWhere` and **named parameters** only — user input is never interpolated into SQL.
 
-Validation errors are returned by the global `ValidationPipe` (`whitelist` + `forbidNonWhitelisted`); database and domain errors are normalized by a global exception filter (`23503` → 400, `23505` → 409, `NotFound` / `Conflict` propagated, anything else → 500 with a log). The frontend renders field errors inline and everything else in a toast, reading `error.response.data.message`.
+Validation errors are returned by the global `ValidationPipe` (`whitelist` + `forbidNonWhitelisted`); database and domain errors are normalized by a global exception filter (`src/common/filters/all-exceptions.filter.ts`: Postgres `23503` → 400, `23505` → 409, `NotFound` / `Conflict` / validation errors propagated untouched, anything else → 500 with the stack logged and no internals in the response). The frontend renders field errors inline and everything else in a toast, reading `error.response.data.message`.
 
 ---
 
@@ -362,7 +362,7 @@ A small, consistent, runnable solution was preferred over a large incomplete app
 
 # AI usage
 
-AI was used as an engineering assistant and the process is documented in **`/ai-process`**, as required by the assignment: tools used, main prompts, which parts were AI-assisted, decisions and corrections made manually, and errors found in the AI output and how they were fixed.
+AI was used as an engineering assistant and the process is documented in **`/ai-process`**, as required by the assignment: tools used, main prompts, which parts were AI-assisted, decisions and corrections made manually, and errors found in the AI output and how they were fixed. `ai-process/sessions.md` lists every session in order, with the verbatim prompts and what each one produced.
 
 AI-generated code was never accepted blindly: on several occasions it proposed unnecessary abstraction layers, which were simplified to match the scope of the assessment.
 
@@ -370,7 +370,7 @@ AI-generated code was never accepted blindly: on several occasions it proposed u
 
 # Additional resources
 
-- `ai-process/` → AI usage documentation.
+- `ai-process/` → AI usage documentation (`README.md` + `sessions.md`, the session log).
 - `docs/postman/` → Postman collection and environment.
 
 ---
