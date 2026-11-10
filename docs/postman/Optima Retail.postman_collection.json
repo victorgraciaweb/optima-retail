@@ -1,0 +1,216 @@
+{
+  "info": {
+    "_postman_id": "b4f1becf-719e-4ff4-96ac-3c79f5965f0d",
+    "name": "Optima Retail",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31951083"
+  },
+  "item": [
+    {
+      "name": "Get incidents",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/incidents",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "incidents"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Maintenaince",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/maintenance/consistency",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "maintenance",
+            "consistency"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Maintenaince fix",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"dryRun\": true,\n  \"actorName\": \"Marco Díaz\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/maintenance/consistency/fix",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "maintenance",
+            "consistency",
+            "fix"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get incident by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/incidents/58204f56-8105-41e3-adf2-43547899c941",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "incidents",
+            "58204f56-8105-41e3-adf2-43547899c941"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get incident activity",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/incidents/58204f56-8105-41e3-adf2-43547899c941/activity",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "incidents",
+            "58204f56-8105-41e3-adf2-43547899c941",
+            "activity"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create comment on incident",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"authorName\": \"Lucía Ortega\",\n  \"body\": \"Pedido recambio al proveedor, llega el jueves.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/incidents/58204f56-8105-41e3-adf2-43547899c941/comments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "incidents",
+            "58204f56-8105-41e3-adf2-43547899c941",
+            "comments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Change incidents status",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"abierta\",\n  \"actorName\": \"Lucía Ortega\",\n  \"reason\": \"El problema ha vuelto a reproducirse tras el cierre.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/incidents/58204f56-8105-41e3-adf2-43547899c941/status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "incidents",
+            "58204f56-8105-41e3-adf2-43547899c941",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create incidents",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"La caja 3 no imprime tickets\",\n  \"description\": \"Desde la apertura, la impresora de la caja 3 no responde. Se ha reiniciado sin efecto.\",\n  \"priority\": \"alta\",\n  \"requesterName\": \"Lucía Ortega\",\n  \"assignedTo\": \"Marco Díaz\",\n  \"dueAt\": \"2026-11-20T18:00:00.000Z\",\n  \"actorName\": \"Marco Díaz\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/incidents",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "incidents"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
