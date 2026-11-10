@@ -12,10 +12,16 @@
     "outDir": "./dist",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+
+    "strict": true,
+    // Off by necessity, not by preference: TypeORM entity columns and
+    // class-validator DTOs are assigned by the ORM and the ValidationPipe
+    // after construction, so every property would need a `!` assertion —
+    // which silences the check without adding any safety.
+    "strictPropertyInitialization": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   }
 }

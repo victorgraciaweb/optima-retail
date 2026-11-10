@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AnalyticsModule } from './analytics/analytics.module';
-import { ArticlesModule } from './articles/articles.module';
 import { CommonModule } from './common/common.module';
 import { EnvConfiguration } from './config/app.config';
 import { HealthModule } from './health/health.module';
-import { SearchModule } from './search/search.module';
+import { IncidentsModule } from './incidents/incidents.module';
+import { MaintenanceModule } from './maintenance/maintenance.module';
 import { SeedModule } from './seed/seed.module';
 
 @Module({
@@ -17,18 +16,18 @@ import { SeedModule } from './seed/seed.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
+      port: Number(process.env.DB_PORT) || 5432,
       database: process.env.DB_NAME,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       autoLoadEntities: true,
-      synchronize: true,
+      // Schema changes travel in src/migrations only. See src/config/data-source.ts.
+      synchronize: false,
     }),
     CommonModule,
     HealthModule,
-    ArticlesModule,
-    AnalyticsModule,
-    SearchModule,
+    IncidentsModule,
+    MaintenanceModule,
     SeedModule,
   ],
   controllers: [],

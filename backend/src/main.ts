@@ -8,14 +8,15 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
-  const globalPrefix = configService.get<string>('globalPrefix');
-  const routeSwagger = configService.get<string>('routeSwagger');
-  const port = configService.get<number>('port');
-  const corsEnabled = configService.get<boolean>('corsEnabled');
+  const globalPrefix = configService.getOrThrow<string>('globalPrefix');
+  const routeSwagger = configService.getOrThrow<string>('routeSwagger');
+  const port = configService.getOrThrow<number>('port');
+  const corsEnabled = configService.getOrThrow<boolean>('corsEnabled');
 
-  const titleSwagger = configService.get<string>('titleSwagger');
-  const descriptionSwagger = configService.get<string>('descriptionSwagger');
-  const versionSwagger = configService.get<string>('versionSwagger');
+  const titleSwagger = configService.getOrThrow<string>('titleSwagger');
+  const descriptionSwagger =
+    configService.getOrThrow<string>('descriptionSwagger');
+  const versionSwagger = configService.getOrThrow<string>('versionSwagger');
 
   // Global Prefix & CORS
   app.setGlobalPrefix(globalPrefix);
